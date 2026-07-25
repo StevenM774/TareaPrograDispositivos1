@@ -49,11 +49,23 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.OnP
         apiService.getPersons().enqueue(new Callback<List<Persona>>() {
             @Override
             public void onResponse(Call<List<Persona>> call, Response<List<Persona>> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    personList = response.body();
+                if (response.isSuccessful()) {
+                    List<Persona> newPersons = response.body();
+                    if (newPersons != null) {
+                        personList = newPersons;
+                        adapter.updateData(personList);
+                    } else {
+                        // Si es exitoso pero el cuerpo es nulo, mostrar lista vacía
+                        personList = new ArrayList<>();
+                        adapter.updateData(personList);
+                    }
+                } else if (response.code() == 404) {
+                    // Si el servidor responde 404, asumimos que la lista está vacía
+                    // para evitar mostrar un error cuando simplemente no hay registros.
+                    personList = new ArrayList<>();
                     adapter.updateData(personList);
                 } else {
-                    Toast.makeText(MainActivity.this, "Error al cargar datos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Error al cargar datos: " + response.code(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -84,9 +96,12 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.OnP
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(MainActivity.this, "Eliminado correctamente", Toast.LENGTH_SHORT).show();
+                    // Eliminamos localmente para una respuesta inmediata en la UI
+                    adapter.removePerson(persona);
+                    // Opcionalmente recargamos para estar sincronizados
                     loadPersons();
                 } else {
-                    Toast.makeText(MainActivity.this, "Error al eliminar", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Error al eliminar: " + response.code(), Toast.LENGTH_SHORT).show();
                 }
             }
 

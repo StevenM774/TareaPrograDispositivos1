@@ -58,6 +58,14 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
         notifyDataSetChanged();
     }
 
+    public void removePerson(Persona persona) {
+        int position = persons.indexOf(persona);
+        if (position != -1) {
+            persons.remove(position);
+            notifyItemRemoved(position);
+        }
+    }
+
     static class PersonViewHolder extends RecyclerView.ViewHolder {
         TextView tvFullName, tvPhone, tvAddress;
         ImageView ivPersonPhoto;
