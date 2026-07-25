@@ -11,10 +11,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+// Actividad encargada de mostrar el formulario para crear o actualizar una persona
 public class PersonFormActivity extends AppCompatActivity {
 
+    // Campos de texto del formulario
     private EditText etNombres, etApellidos, etDireccion, etTelefono, etFoto;
+    // Botón utilizado para guardar o actualizar los datos
     private Button btnSave;
+    // Identificador de la persona. Tiene valor -1 cuando se crea un nuevo registro
     private int personId = -1;
 
     @Override
