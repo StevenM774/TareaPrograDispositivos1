@@ -41,8 +41,8 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
         holder.tvPhone.setText(persona.getTelefono());
         holder.tvAddress.setText(persona.getDireccion());
 
-        // For simplicity, we are not loading the image here.
-        // In a real app, you would use Glide or Picasso to load persona.getFoto() into holder.ivPersonPhoto
+       // Por simplicidad, no estamos cargando la imagen aquí.
+       // En una aplicación real, se utilizaría Glide o Picasso para cargar persona.getFoto() en holder.ivPersonPhoto.
 
         holder.itemView.setOnClickListener(v -> listener.onEditClick(persona));
         holder.btnDelete.setOnClickListener(v -> listener.onDeleteClick(persona));
