@@ -1,0 +1,3 @@
+Aplicación Android para la Gestión de Personas mediante un CRUD
+
+Desarrollo de una aplicación móvil para dispositivos Android que permite gestionar información de personas mediante las operaciones CRUD: crear, consultar, actualizar y eliminar registros. La aplicación utiliza Java como lenguaje de programación, Retrofit para realizar la comunicación con una API REST, PHP para el desarrollo del backend y MySQL como sistema de gestión de base de datos. Esta arquitectura permite establecer una comunicación entre la aplicación móvil y el servidor para administrar los datos de forma dinámica y eficiente.
