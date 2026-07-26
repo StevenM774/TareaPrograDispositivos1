@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.OnP
     private PersonAdapter adapter;
     private List<Persona> personList = new ArrayList<>();
     private static final int REQUEST_CODE_FORM = 100;
-
+    // Inicializa la interfaz principal y carga la lista de personas.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
